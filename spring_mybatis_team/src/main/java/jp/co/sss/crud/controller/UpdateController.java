@@ -67,8 +67,11 @@ public class UpdateController {
 	 */
 	@RequestMapping(path = "/update/input", method = RequestMethod.GET)
 	public String inputUpdate(Integer empId, @ModelAttribute EmployeeForm employeeForm) {
+		// 社員IDに紐づく社員情報を検索し、Employee型の変数に代入する
 		Employee employee = employeeMapper.findByEmpId(empId);
+		// 検索した社員情報をformに積め直す
 		BeanCopy.copyEntityToForm(employee, employeeForm);
+		// 更新確認画面のビュー名を返す
 		return "update/update_input";
 	}
 
@@ -83,11 +86,16 @@ public class UpdateController {
 	 */
 	@RequestMapping(path = "/update/check", method = RequestMethod.POST)
 	public String checkUpdate(@Valid @ModelAttribute EmployeeForm employeeForm, BindingResult result, Model model) {
+		// 入力チェックでエラーが発生した場合
 		if (result.hasErrors()) {
+			// エラーがある場合は入力画面に戻る
 			return "update/update_input";
 		} else {
+			// 部署IDから部署情報を検索する
 			Department department = departmentMapper.findByDeptId(employeeForm.getDeptId());
+			// 部署名をモデルに追加する
 			model.addAttribute("deptName", department.getDeptName());
+			// 更新確認画面のビュー名を返す
 			return "update/update_check";
 		}
 	}
@@ -100,6 +108,7 @@ public class UpdateController {
 	 */
 	@RequestMapping(path = "/update/back", method = RequestMethod.POST)
 	public String backInputUpdate(@ModelAttribute EmployeeForm employeeForm) {
+		// 更新入力画面のビュー名を返す
 		return "update/update_input";
 	}
 
@@ -112,16 +121,19 @@ public class UpdateController {
 	 */
 	@RequestMapping(path = "/update/complete", method = RequestMethod.POST)
 	public String completeUpdate(EmployeeForm employeeForm, HttpSession session) {
+		// フォームの内容をEmployeeエンティティにコピー
 		Employee employee = BeanCopy.copyFormToEmployee(employeeForm);
-		
+		// 権限がnullの場合、デフォルトの権限を設定
 		if (employee.getAuthority() == null) {
 			employee.setAuthority(1);
 		}
-		
+		// 社員情報を更新する
 		employeeMapper.update(employee);
+		// セッションからユーザー情報を取得
 		Employee user = (Employee) session.getAttribute("user");
-		
+		//ログイン中のユーザーが自分の情報を更新した場合、セッション情報も更新
 		if (employee.getEmpId() == user.getEmpId()) {
+			// セッションに保存されているユーザーの社員名を更新
 			user.setEmpName(employee.getEmpName());
 			session.setAttribute("user", user);
 		}
