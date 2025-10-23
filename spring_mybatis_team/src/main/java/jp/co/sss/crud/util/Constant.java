@@ -6,6 +6,9 @@ public class Constant {
 
 	/** 権限の初期値 */
 	public static final Integer DEFAULT_AUTHORITY = 1;
+	
+	/** 管理者権限 */
+	public static final Integer ADMIN_AUTHORITY = 2;
 
 	/** 部署IDの初期値 */
 	public static final Integer DEFAULT_DEPT_ID = 1;
