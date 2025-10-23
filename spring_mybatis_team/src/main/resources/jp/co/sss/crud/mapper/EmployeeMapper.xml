@@ -27,7 +27,7 @@
 		SELECT *
 		FROM Employee e
 		INNER JOIN Department d ON e.dept_id = d.dept_id
-		WHERE emp_name = #{empName}
+		WHERE emp_name LIKE CONCAT('%', #{empName}, '%')
 	</select>
 
 	<!-- TODO 部署ID検索 -->
