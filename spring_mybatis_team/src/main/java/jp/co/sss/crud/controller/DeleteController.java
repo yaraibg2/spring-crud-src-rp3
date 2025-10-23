@@ -18,7 +18,7 @@ import jp.co.sss.crud.service.SearchForEmployeesByEmpIdService;
 public class DeleteController {
 
 	/**
-	 * 社員IDを基に社員情報を検索するサービス
+	 * 社員IDを基に社員情報を検索するサービス 
 	 */
 	@Autowired
 	SearchForEmployeesByEmpIdService searchForEmployeesByEmpIdService;
