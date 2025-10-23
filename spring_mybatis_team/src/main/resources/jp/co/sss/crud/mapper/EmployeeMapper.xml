@@ -24,11 +24,19 @@
 	<!-- TODO 社員名検索 -->
 	<select id="findByEmpNameContainingOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT *
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id = d.dept_id
+		WHERE emp_name LIKE CONCAT('%', #{empName}, '%')
 	</select>
 
 	<!-- TODO 部署ID検索 -->
 	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
+		SELECT *
+		FROM Employee e
+		INNER JOIN Department d ON e.dept_id = d.dept_id
+		WHERE d.dept_id = #{deptId}
 	</select>
 
 	<!-- TODO ログイン用のIDとパスワード検索 -->
