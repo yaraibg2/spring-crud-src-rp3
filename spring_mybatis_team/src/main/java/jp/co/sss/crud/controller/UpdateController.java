@@ -13,12 +13,11 @@ import jakarta.validation.Valid;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.form.EmployeeForm;
-import jp.co.sss.crud.mapper.DepartmentMapper;
-import jp.co.sss.crud.mapper.EmployeeMapper;
 import jp.co.sss.crud.service.SearchForDepartmentByDeptIdService;
 import jp.co.sss.crud.service.SearchForEmployeesByEmpIdService;
 import jp.co.sss.crud.service.UpdateEmployeeService;
 import jp.co.sss.crud.util.BeanCopy;
+import jp.co.sss.crud.util.Constant;
 
 /**
  * 社員更新コントローラー
@@ -43,18 +42,6 @@ public class UpdateController {
 	 */
 	@Autowired
 	SearchForDepartmentByDeptIdService searchForDepartmentByDeptIdService;
-	
-	/**
-	 * Employeeテーブル用のマッパー
-	 */
-	@Autowired
-	EmployeeMapper employeeMapper;
-	
-	/**
-	 * Departmentテーブル用のマッパー
-	 */
-	@Autowired
-	DepartmentMapper departmentMapper;
 
 	/**
 	 * 社員情報の変更内容入力画面を出力
@@ -68,7 +55,7 @@ public class UpdateController {
 	@RequestMapping(path = "/update/input", method = RequestMethod.GET)
 	public String inputUpdate(Integer empId, @ModelAttribute EmployeeForm employeeForm) {
 		// 社員IDに紐づく社員情報を検索し、Employee型の変数に代入する
-		Employee employee = employeeMapper.findByEmpId(empId);
+		Employee employee = searchForEmployeesByEmpIdService.execute(empId);
 		// 検索した社員情報をformに積め直す
 		BeanCopy.copyEntityToForm(employee, employeeForm);
 		// 更新確認画面のビュー名を返す
@@ -92,7 +79,7 @@ public class UpdateController {
 			return "update/update_input";
 		} else {
 			// 部署IDから部署情報を検索する
-			Department department = departmentMapper.findByDeptId(employeeForm.getDeptId());
+			Department department = searchForDepartmentByDeptIdService.execute(employeeForm.getDeptId());
 			// 部署名をモデルに追加する
 			model.addAttribute("deptName", department.getDeptName());
 			// 更新確認画面のビュー名を返す
@@ -125,10 +112,10 @@ public class UpdateController {
 		Employee employee = BeanCopy.copyFormToEmployee(employeeForm);
 		// 権限がnullの場合、デフォルトの権限を設定
 		if (employee.getAuthority() == null) {
-			employee.setAuthority(1);
+			employee.setAuthority(Constant.DEFAULT_AUTHORITY);
 		}
 		// 社員情報を更新する
-		employeeMapper.update(employee);
+		updateEmployeeService.execute(employee);
 		// セッションからユーザー情報を取得
 		Employee user = (Employee) session.getAttribute("user");
 		//ログイン中のユーザーが自分の情報を更新した場合、セッション情報も更新
