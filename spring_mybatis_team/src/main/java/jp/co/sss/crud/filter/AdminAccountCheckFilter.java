@@ -61,9 +61,12 @@ public class AdminAccountCheckFilter extends HttpFilter {
 		// 管理者(セッションユーザーのIDが2)の場合、アクセス許可
 		if (authority == Constant.ADMIN_AUTHORITY) {
 			accessFlg = true;
+			// リクエスト先が削除機能ではない場合
+		} else if (!requestURI.contains("/spring_crud/delete")) {
 			// ログインユーザ自身(セッションユーザのIDと変更リクエストの社員IDが一致)の画面はアクセス許可
-		} else if (userId == empId) {
-			accessFlg = true;
+			if (userId == empId) {
+				accessFlg = true;
+			}
 		}
 
 		// accessFlgが立っていない場合はログイン画面へリダイレクトし、処理を終了する
