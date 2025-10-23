@@ -65,7 +65,8 @@
 
 	<!-- TODO IDによる単一削除 -->
 	<delete id="delete" parameterType="int">
-
+		DELETE FROM employee
+		WHERE emp_id = #{empId}
 	</delete>
 
 
