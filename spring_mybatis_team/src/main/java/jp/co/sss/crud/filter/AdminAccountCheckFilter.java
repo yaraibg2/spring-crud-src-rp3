@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jp.co.sss.crud.entity.Employee;
+import jp.co.sss.crud.util.Constant;
 
 /**
  * 権限認証用フィルタ
@@ -58,7 +59,7 @@ public class AdminAccountCheckFilter extends HttpFilter {
 		boolean accessFlg = false;
 
 		// 管理者(セッションユーザーのIDが2)の場合、アクセス許可
-		if (authority == 2) {
+		if (authority == Constant.ADMIN_AUTHORITY) {
 			accessFlg = true;
 			// ログインユーザ自身(セッションユーザのIDと変更リクエストの社員IDが一致)の画面はアクセス許可
 		} else if (userId == empId) {
