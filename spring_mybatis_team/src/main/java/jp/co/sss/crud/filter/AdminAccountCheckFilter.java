@@ -68,8 +68,6 @@ public class AdminAccountCheckFilter extends HttpFilter {
 
 		// accessFlgが立っていない場合はログイン画面へリダイレクトし、処理を終了する
 		if (!accessFlg) {
-			//TODO  レスポンス情報を取得
-			
 			// ログイン画面へリダイレクト
 			response.sendRedirect("/spring_crud");
 			//処理を終了
