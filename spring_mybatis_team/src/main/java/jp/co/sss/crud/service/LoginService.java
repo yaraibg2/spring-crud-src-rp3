@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import jp.co.sss.crud.form.LoginForm;
 import jp.co.sss.crud.mapper.EmployeeMapper;
+import jp.co.sss.crud.util.Constant;
+import jp.co.sss.crud.util.LoginErrorType;
 
 /**
  * ログイン処理
@@ -24,7 +26,11 @@ public class LoginService {
 	 * @return LoginResult ログイン失敗時はLoginResult.failLogin,ログイン成功時はLoginResult.succeedLoginを呼び出す。
 	 */
 	public LoginResult execute(LoginForm loginForm) {
-		return null;
+		if (mapper.findByEmpIdAndEmpPass(loginForm.getEmpId(), loginForm.getEmpPass()) != null) {
+			return LoginResult.succeedLogin(mapper.findByEmpIdAndEmpPass(loginForm.getEmpId(), loginForm.getEmpPass()));
+		} else {
+			return LoginResult.failLogin(Constant.LOGIN_ERR_MSG, LoginErrorType.SYSTEM_ERROR);
+		}
 
 	}
 
