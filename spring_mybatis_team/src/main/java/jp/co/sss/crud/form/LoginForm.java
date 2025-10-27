@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 
 public class LoginForm {
 
-	//TODO フィールドに必要なアノテーションを付与しバリデーションを行うこと
 	/** 社員ID */
 	@NotNull
 	@Min(value = 1)

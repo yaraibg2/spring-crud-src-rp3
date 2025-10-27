@@ -23,7 +23,7 @@
 		WHERE emp_id = #{empId}
 	</select>
 
-	<!-- TODO 社員名検索 -->
+	<!-- 社員名検索 -->
 	<select id="findByEmpNameContainingOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
@@ -32,7 +32,7 @@
 		WHERE emp_name LIKE CONCAT('%', #{empName}, '%')
 	</select>
 
-	<!-- TODO 部署ID検索 -->
+	<!-- 部署ID検索 -->
 	<select id="findByDepartmentDeptIdOrderByEmpId"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
@@ -41,7 +41,7 @@
 		WHERE d.dept_id = #{deptId}
 	</select>
 
-	<!-- TODO ログイン用のIDとパスワード検索 -->
+	<!-- ログイン用のIDとパスワード検索 -->
 	<select id="findByEmpIdAndEmpPass"
 		resultType="jp.co.sss.crud.entity.Employee">
 		SELECT *
@@ -65,7 +65,7 @@
 		)
 	</insert>
 
-	<!-- TODO IDによる単一変更 -->
+	<!-- IDによる単一変更 -->
 	<update id="update"	parameterType="jp.co.sss.crud.entity.Employee">
 		UPDATE employee SET
 			emp_pass = #{empPass},
@@ -79,7 +79,7 @@
 
 	</update>
 
-	<!-- TODO IDによる単一削除 -->
+	<!-- IDによる単一削除 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM employee
 		WHERE emp_id = #{empId}
