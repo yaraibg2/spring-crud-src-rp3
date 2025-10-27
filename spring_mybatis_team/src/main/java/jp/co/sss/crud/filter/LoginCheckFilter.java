@@ -27,6 +27,7 @@ public class LoginCheckFilter extends HttpFilter {
 		// ユーザーがNULLの場合、ログイン画面にリダイレクトする
 		if (user == null) {
 			response.sendRedirect("/spring_crud");
+			return;
 		}
 		// 次の処理へ移行
 		chain.doFilter(request, response);
