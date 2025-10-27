@@ -17,7 +17,7 @@ public class LoginForm {
 
 	/** パスワード */
 	@NotBlank
-	@Size(min = 1, max = 16)
+	@Size(max = 16)
 	private String empPass;
 
 	/**
