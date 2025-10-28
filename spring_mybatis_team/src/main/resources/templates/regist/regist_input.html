@@ -12,7 +12,7 @@
         <!-- エラーメッセージの出力 -->
         <p>
           <span th:each="error:${#fields.detailedErrors()}">
-            <span th:text="${error.message}"></span><br />
+            <span th:text="${error.message}" style="color: red;"></span><br />
           </span>
         </p>
 
@@ -31,8 +31,10 @@
         <div class="form">
           <div class="label">性別：</div>
           <div class="input">
-            <input type="radio" th:field="*{gender}" value="1" />男性&nbsp;
-            <input type="radio" th:field="*{gender}" value="2" />女性
+            <input type="radio" th:field="*{gender}" value="1" id="male" />
+            <label for="male" class="radio-label">&nbsp;&nbsp;男性&nbsp;&nbsp;</label>
+            <input type="radio" th:field="*{gender}" value="2" id="female" />&nbsp;
+            <label for="female" class="radio-label">&nbsp;&nbsp;女性&nbsp;&nbsp;</label>
           </div>
         </div>
         <div class="form">
@@ -50,8 +52,10 @@
         <div class="form">
           <div class="label">権限：</div>
           <div class="input">
-            <input type="radio" th:field="*{authority}" value="1" />一般&nbsp;&nbsp;
-            <input type="radio" th:field="*{authority}" value="2" />管理者
+            <input type="radio" th:field="*{authority}" value="1" id="general" />
+            <label for="general" class="radio-label">&nbsp;&nbsp;一般&nbsp;&nbsp;</label>
+            <input type="radio" th:field="*{authority}" value="2" id="admin" />&nbsp;
+            <label for="admin" class="radio-label">&nbsp;&nbsp;管理者&nbsp;&nbsp;</label>
           </div>
         </div>
         <div class="form">
