@@ -21,18 +21,25 @@ div.regist_link {
 
 /* ---- 社員情報一覧テーブル ---- */
 table {
-	background-color: #FFFFFF;
-	border-color: #87CEEB;
-	border-width: 1px;
-	border-style: solid;
-	border-collapse: collapse;
 	margin: 0px auto 20px;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 
-table td, table th {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #87CEEB;
+table th{
+  text-align: left;
+  border-left: 1px solid #3c6690;
+  border-top: 1px solid #3c6690;
+  border-bottom: 1px solid #3c6690;
+  box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+}
+
+table td{
+  text-align: left;
+  border-left: 1px solid #a8b7c5;
+  border-bottom: 1px solid #a8b7c5;
+  border-top:none;
+  box-shadow: 0px -3px 5px 1px #eee inset;
 }
 
 td.data {
@@ -40,31 +47,38 @@ td.data {
 }
 
 th.empId {
-	width: 60px;
+	width: 70px;
+	text-align: left;
 }
 
 th.empName {
-	width: 80px;
+	width: 70px;
+	text-align: left;
 }
 
 th.gender {
-	width: 50px;
+	width: 55px;
+	text-align: left;
 }
 
 th.address {
-	width: 80px;
+	width: 60px;
+	text-align: left;
 }
 
 th.birthday {
-	width: 100px;
+	width: 80px;
+	text-align: left;
 }
 
 th.authority {
-	width: 60px;
+	width: 55px;
+	text-align: left;
 }
 
 th.deptName {
-	width: 60px;
+	width: 70px;
+	text-align: left;
 }
 
 th.button {
@@ -75,8 +89,25 @@ td.button {
 	text-align: center;
 }
 
-table td {
-	padding-left: 5px;
+table th:first-child{
+  border-radius: 5px 0 0 0;
+}
+
+table th:last-child{
+  border-radius: 0 5px 0 0;
+  border-right: 1px solid #3c6690;
+}
+
+table td:last-child{
+  border-right: 1px solid #a8b7c5;
+}
+
+table tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+
+table tr:last-child td:last-child {
+  border-radius: 0 0 5px 0;
 }
 
 /* ---- 入力フォーム(検索、登録、変更、削除) ---- */
@@ -141,11 +172,74 @@ div.message {
 
 /* ---- ボタン全般 ---- */
 input[type=submit] {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #808080;
-	padding: 0px 10px;
-	border-radius: 6px;
-	color: #12526d;
+	font-size: 0.8rem;
+	font-weight: 500;
+	line-height: 1.5;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	color: rgb(0, 0, 0);
+	border-radius: 100vh;
+	border: 1.2px solid;
+	background-color:rgb(231, 231, 231);
 }
-
+input[type=submit]:hover {
+	background-color: rgb(153, 217, 255);
+}
+input[type=text] {
+	border-radius: 100vh;
+	border: 1.5px solid;
+}
+input[type=password] {
+	border-radius: 100vh;
+	border: 1.5px solid;
+}
+input[type=radio] {
+	display: none;
+}
+input[type="radio"]:checked + label {
+	background-color: rgb(153, 217, 255);
+}
+select {
+	border-radius: 100vh;
+	border: 1.5px solid;
+	margin: 3px;
+}
+.radio-label {
+	font-weight: bold;
+	border-radius: 100vh;
+	border: 1.5px solid black;
+}
+.radio-label:hover {
+	background-color: rgb(192, 192, 192);
+}
+.tablesorter-headerUnSorted {
+    background-image: url('../img/sort.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+.tablesorter-headerAsc {
+    background-image: url('../img/sort_a.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    border-bottom: #000 2px solid;
+}
+.tablesorter-headerDesc {
+    background-image: url('../img/sort_d.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    border-bottom: #000 2px solid;
+}

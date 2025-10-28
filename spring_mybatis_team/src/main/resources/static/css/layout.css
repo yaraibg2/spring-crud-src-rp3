@@ -1,4 +1,8 @@
 ﻿@charset "UTF-8";
+@import
+url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import
+url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
 
 /* ---- 画面の大枠のレイアウト用CSS ---- */
 
@@ -6,6 +10,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 .content {
@@ -91,5 +96,6 @@ footer {
 	text-align: center;
 	font-size: 8pt;
 	line-height: 30px;
+	font-family: 'Itim', cursive;
 }
 
