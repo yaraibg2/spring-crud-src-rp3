@@ -7,7 +7,6 @@
 </head>
 <body class="admin user_list">
 	<h3>社員一覧画面</h3>
-	<!--TODO セッション中ユーザの権限が管理者の場合のみ表示するようにth:if属性を変更する(以下の文も同様) -->
 	<th:block th:if="${session.user.authority == 2}">
 		<div class="regist_link">
 			<a th:href="@{/regist/input}">新規社員登録</a>
@@ -21,21 +20,23 @@
 			</p>
 		</div>
 	</th:block>
-	<table class="list_table" th:if="!${#lists.isEmpty(employees)}">
-		<tr>
-			<th class="empId">社員ID</th>
-			<th class="empName">社員名</th>
-			<th:block th:if="${session.user.authority == 2}">
-				<th class="gender">性別</th>
-				<th class="address">住所</th>
-				<th class="birthday">生年月日</th>
-				<th class="authority">権限</th>
-			</th:block>
-			<th class="deptName">部署名</th>
-			<th:block th:if="${session.user.authority == 2}">
-				<th class="button" colspan="2">操作</th>
-			</th:block>
-		</tr>
+	<table id="empTable" class="list_table tablesorter" th:if="!${#lists.isEmpty(employees)}">
+		<thead>
+			<tr>
+				<th class="empId">社員ID</th>
+				<th class="empName">社員名</th>
+				<th:block th:if="${session.user.authority == 2}">
+					<th class="gender">性別</th>
+					<th class="address">住所</th>
+					<th class="birthday">生年月日</th>
+					<th class="authority">権限</th>
+				</th:block>
+				<th class="deptName">部署名</th>
+				<th:block th:if="${session.user.authority == 2}">
+					<th class="button sorter-false" colspan="2">操作</th>
+				</th:block>
+			</tr>
+		</thead>
 		<tr th:each="employee: ${employees}">
 			<td th:text="${employee.empId}"></td>
 			<td th:text="${employee.empName}"></td>
